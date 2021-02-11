@@ -28,26 +28,22 @@ export default class BlogModal extends Component {
   }
 
   handleSuccessfullFormSubmission(blog) {
-    console.log("blog from blog form");
+    this.props.handleSuccessfulNewBlogSubmission(blog);
   }
 
   render() {
     return (
-      <div>
-        <ReactModal
-          style={this.customStyles}
-          onRequestClose={() => {
-            this.props.handleModalClose();
-          }}
-          isOpen={this.props.modalIsOpen}
-        >
-          <BlogForm
-            handleSuccessfulFormSubmission={
-              this.handleSuccessfullFormSubmission
-            }
-          />
-        </ReactModal>
-      </div>
+      <ReactModal
+        style={this.customStyles}
+        onRequestClose={() => {
+          this.props.handleModalClose();
+        }}
+        isOpen={this.props.modalIsOpen}
+      >
+        <BlogForm
+          handleSuccessfullFormSubmission={this.handleSuccessfullFormSubmission}
+        />
+      </ReactModal>
     );
   }
 }

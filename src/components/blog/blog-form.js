@@ -20,12 +20,6 @@ export default class BlogForm extends Component {
     return formData;
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
-
   handleSubmit(event) {
     axios
       .post(
@@ -35,6 +29,11 @@ export default class BlogForm extends Component {
       )
       .then((response) => {
         this.props.handleSuccessfullFormSubmission(response.data);
+
+        this.setState({
+          title: "",
+          blog_status: "",
+        });
       })
       .catch((error) => {
         console.log("handleSubmit for blog error", error);
@@ -42,6 +41,12 @@ export default class BlogForm extends Component {
 
     event.preventDefault();
   }
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
